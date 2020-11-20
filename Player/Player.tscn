@@ -134,22 +134,20 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=21]
-extents = Vector2( 8, 23 )
+extents = Vector2( 4.80814, 23 )
 
 [sub_resource type="RectangleShape2D" id=22]
 
 [node name="Player" type="KinematicBody2D"]
-position = Vector2( 200, 200 )
 script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 20 )
 animation = "Attack"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -2.31245, -1.93739 )
 shape = SubResource( 21 )
 
 [node name="StateMachine" type="Node" parent="."]
@@ -212,7 +210,7 @@ enabled = true
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -2.94316, 16.1873 )
+position = Vector2( -2.90059, 21.6786 )
 scale = Vector2( 1.14677, 0.59605 )
 shape = SubResource( 22 )
 [connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_Timer_timeout"]
