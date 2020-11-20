@@ -20,6 +20,11 @@ export var max_leap = 1000
 
 var moving = false
 var is_jumping = false
+var is_on_moving_platform = null
+var moving_platform_offset = 0
+
+
+onready var Attack = load("res://Attack/Attack.tscn")
 
 
 func _ready():
@@ -34,7 +39,20 @@ func _physics_process(_delta):
 	
 	if position.y > Global.death_zone:
 		queue_free()
-		
+	
+	if Input.is_action_just_pressed("attack"):
+		var attack = Attack.instance()
+		attack.position = global_position 
+		attack.position.x += 10 * direction
+		attack.direction = direction
+		get_node("/root/Game/Attack_Container").add_child(attack)
+	
+	if is_on_moving_platform != null:
+		#print ( self.get_parent().position)
+		self.get_parent().position = moving_platform_offset - is_on_moving_platform.global_position 
+	else:
+		pass
+		#set_sync_to_physics(false)	
 
 func is_moving():
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
@@ -56,4 +74,47 @@ func set_animation(anim):
 	else: $AnimatedSprite.play()
 
 func die():
+	Global.keys -= 1
+	Global.score = 0
+	
 	queue_free()
+
+func do_damage(d):
+	queue_free()
+	
+#func is_on_floor():
+	#is_on_moving_platform = null
+	#var fl = $Floor.get_children()
+	#for f in fl:
+	#	if f.is_colliding():
+		#	var c = f.get_collider()
+		#	if c.get_parent().name == "Platform_Container":
+			#	is_on_moving_platform = c
+	#return false
+	
+func is_on_right_wall():
+	if $Wall/Right.is_colliding():
+		return true
+	return false
+
+
+func is_on_left_wall():
+	if $Wall/Left.is_colliding():
+		return true
+	return false
+
+
+func _on_Area2D_body_entered(body):
+	if body.get_parent().name == "Platform_Container":
+		moving_platform_offset = self.global_position
+		is_on_moving_platform = body
+		print("on moving")
+		print (body.global_position)
+		
+		#self.position = body.position
+
+
+func _on_Area2D_body_exited(body):
+	if body.get_parent().name == "Platform_Container":
+		is_on_moving_platform = null
+		print("left moving")

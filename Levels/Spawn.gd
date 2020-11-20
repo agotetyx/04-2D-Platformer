@@ -14,3 +14,5 @@ func _physics_process(delta):
 	modulate.v = modulate.v + value_speed
 	if (modulate.v <= value_limit[0] and value_speed < 0) or (modulate.v >= value_limit[1] and value_speed > 0):
 		value_speed *= -1
+
+

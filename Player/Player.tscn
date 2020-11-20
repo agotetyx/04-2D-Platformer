@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://Assets/player.png" type="Texture" id=1]
 [ext_resource path="res://Player/Jumping.gd" type="Script" id=2]
@@ -13,32 +13,32 @@
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 32, 70 )
+region = Rect2( 0, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 64, 0, 32, 70 )
+region = Rect2( 32, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 96, 0, 32, 70 )
+region = Rect2( 64, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 128, 0, 32, 70 )
+region = Rect2( 96, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=5]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 160, 0, 32, 70 )
+region = Rect2( 128, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=6]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 192, 0, 32, 70 )
+region = Rect2( 160, 140, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=7]
 flags = 4
@@ -58,28 +58,58 @@ region = Rect2( 288, 70, 32, 70 )
 [sub_resource type="AtlasTexture" id=10]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 224, 0, 32, 70 )
+region = Rect2( 32, 0, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=11]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 256, 0, 32, 70 )
+region = Rect2( 64, 0, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=12]
 flags = 4
 atlas = ExtResource( 1 )
-region = Rect2( 288, 0, 32, 70 )
+region = Rect2( 96, 0, 32, 70 )
 
 [sub_resource type="AtlasTexture" id=13]
 flags = 4
 atlas = ExtResource( 1 )
+region = Rect2( 128, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 160, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 4
+atlas = ExtResource( 1 )
 region = Rect2( 0, 0, 32, 70 )
 
-[sub_resource type="SpriteFrames" id=14]
+[sub_resource type="AtlasTexture" id=17]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 224, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 256, 0, 32, 70 )
+
+[sub_resource type="AtlasTexture" id=19]
+flags = 4
+atlas = ExtResource( 1 )
+region = Rect2( 288, 0, 32, 70 )
+
+[sub_resource type="SpriteFrames" id=20]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
-"name": "Moving",
+"name": "Attack",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ) ],
@@ -87,32 +117,40 @@ animations = [ {
 "name": "Falling",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ) ],
-"loop": false,
-"name": "Jumping",
+"frames": [ SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "Moving",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 13 ) ],
+"frames": [ SubResource( 16 ) ],
 "loop": true,
 "name": "Idle",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ) ],
+"loop": false,
+"name": "Jumping",
+"speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=15]
+[sub_resource type="RectangleShape2D" id=21]
 extents = Vector2( 8, 23 )
+
+[sub_resource type="RectangleShape2D" id=22]
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 200, 200 )
 script = ExtResource( 9 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 14 )
-animation = "Idle"
+frames = SubResource( 20 )
+animation = "Attack"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 5 )
-shape = SubResource( 15 )
+position = Vector2( -2.31245, -1.93739 )
+shape = SubResource( 21 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 4 )
@@ -138,4 +176,45 @@ script = ExtResource( 5 )
 [node name="Timer" type="Timer" parent="StateMachine/Coyote"]
 wait_time = 0.2
 one_shot = true
+
+[node name="Floor" type="Node2D" parent="."]
+
+[node name="Left" type="RayCast2D" parent="Floor"]
+position = Vector2( -6.72717, 24.386 )
+scale = Vector2( 0.49292, 0.211956 )
+enabled = true
+
+[node name="Center" type="RayCast2D" parent="Floor"]
+position = Vector2( -1.0511, 24.5962 )
+scale = Vector2( 0.5, 0.2 )
+enabled = true
+
+[node name="Right" type="RayCast2D" parent="Floor"]
+position = Vector2( 4.83516, 23.9655 )
+scale = Vector2( 0.86, 0.2 )
+enabled = true
+
+[node name="Wall" type="Node2D" parent="."]
+position = Vector2( 60.1241, 7.98853 )
+
+[node name="Left" type="RayCast2D" parent="Wall"]
+position = Vector2( -64.749, -6.93738 )
+rotation = 1.55471
+scale = Vector2( 1, 0.2 )
+enabled = true
+
+[node name="Right" type="RayCast2D" parent="Wall"]
+position = Vector2( -53.8174, -7.14758 )
+rotation = -1.58721
+scale = Vector2( 1, 0.2 )
+enabled = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2( -2.94316, 16.1873 )
+scale = Vector2( 1.14677, 0.59605 )
+shape = SubResource( 22 )
 [connection signal="timeout" from="StateMachine/Coyote/Timer" to="StateMachine/Coyote" method="_on_Timer_timeout"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_Area2D_body_exited"]

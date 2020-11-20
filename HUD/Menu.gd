@@ -1,4 +1,4 @@
-extends KinematicBody2D
+extends Control
 
 
 # Declare member variables here. Examples:
@@ -14,3 +14,12 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
 #	pass
+
+
+func _on_Save_pressed():
+	#Global.save_game(0)
+	pass
+
+
+func _on_Load_pressed():
+	Global.load_game(0)
