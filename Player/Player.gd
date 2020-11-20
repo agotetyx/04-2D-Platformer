@@ -23,6 +23,8 @@ var is_jumping = false
 var is_on_moving_platform = null
 var moving_platform_offset = 0
 
+var container_position = Vector2.ZERO
+
 
 onready var Attack = load("res://Attack/Attack.tscn")
 
@@ -48,11 +50,7 @@ func _physics_process(_delta):
 		get_node("/root/Game/Attack_Container").add_child(attack)
 	
 	if is_on_moving_platform != null:
-		#print ( self.get_parent().position)
-		self.get_parent().position = moving_platform_offset - is_on_moving_platform.global_position 
-	else:
-		pass
-		#set_sync_to_physics(false)	
+		self.get_parent().position = container_position + (is_on_moving_platform.global_position - moving_platform_offset)
 
 func is_moving():
 	if Input.is_action_pressed("left") or Input.is_action_pressed("right"):
@@ -106,15 +104,11 @@ func is_on_left_wall():
 
 func _on_Area2D_body_entered(body):
 	if body.get_parent().name == "Platform_Container":
-		moving_platform_offset = self.global_position
 		is_on_moving_platform = body
-		print("on moving")
-		print (body.global_position)
-		
-		#self.position = body.position
+		moving_platform_offset = body.global_position
+		container_position = get_parent().position
 
 
 func _on_Area2D_body_exited(body):
 	if body.get_parent().name == "Platform_Container":
 		is_on_moving_platform = null
-		print("left moving")
