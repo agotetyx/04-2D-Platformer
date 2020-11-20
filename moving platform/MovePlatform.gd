@@ -40,4 +40,5 @@ func _on_Timer_timeout():
 	#$Timer.start
 	
 func _physics_process(delta):
-	print(global_position)
+	#print(global_position)
+	pass

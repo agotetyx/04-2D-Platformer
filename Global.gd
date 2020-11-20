@@ -102,7 +102,7 @@ func load_save_data(data):
 			player.queue_free()
 		get_node("/root/Game/Player_Container").spawn(str2var(data["player"]))
 	
-	var enemy_container = get_node("/root/Game/Enemy_Container")
+	var enemy_container = get_node("/root/Game/EnemyContainer")
 	
 	for e in enemy_container.get_children():
 		e.queue_free()
