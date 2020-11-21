@@ -17,4 +17,5 @@ func _ready():
 
 
 func _on_Save_body_entered(body):
-	Global.save_game(0)
+	if body.name == "Player":
+		Global.save_game(0)

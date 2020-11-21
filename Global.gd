@@ -185,9 +185,9 @@ func execute_fade_out(target):
 	
 
 func increase_score(s):
-	#score += s
-	#HUD.update_score(s)
-	pass
+	score += s
+	HUD.update_score(s)
+	
 	
 func increase_keys(k):
 	

@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://moving platform/MovePlatform.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Tiles moving.png" type="Texture" id=2]
+
+[node name="MovePlatform" type="KinematicBody2D"]
+position = Vector2( 1168.5, 384.677 )
+input_pickable = true
+collision_layer = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Tiles moving" type="Sprite" parent="."]
+position = Vector2( 3.48059, -2.68344 )
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
+position = Vector2( 3.48059, -2.68344 )
+polygon = PoolVector2Array( 69, 70.5, 66.2, 70.5, 63.2, 67.5, 59.8, 70.5, 1, 70.5, 1, 68.9, -0.199997, 68.4, -67, 70.6, -67, -65.5, 61, -65.5, 61, -63.9, 62.7, -63.2, 69, -65.7 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+one_shot = true
+[connection signal="tween_completed" from="Tween" to="." method="_on_Movetween_tween_completed"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

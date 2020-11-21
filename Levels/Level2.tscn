@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Assets/portal_start.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player_Container.gd" type="Script" id=2]
@@ -9,10 +9,7 @@
 [ext_resource path="res://Assets/Tiles.png" type="Texture" id=7]
 [ext_resource path="res://Enemies/Bird.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/Enemy Ground.tscn" type="PackedScene" id=9]
-[ext_resource path="res://HUD/HUD2.gd" type="Script" id=10]
-[ext_resource path="res://Assets/platformer-pack-redux-360-assets/PNG/Items/gemBlue.png" type="Texture" id=11]
-[ext_resource path="res://Assets/font/le-murmure.otf" type="DynamicFontData" id=12]
-[ext_resource path="res://Assets/platformer-pack-redux-360-assets/PNG/Items/keyYellow.png" type="Texture" id=13]
+[ext_resource path="res://HUD/UI.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Gems/Gem.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Lives/Keys.tscn" type="PackedScene" id=15]
 
@@ -416,10 +413,6 @@ points = PoolVector2Array( 0, 0, 128, 0, 128, 64, 0, 64 )
 7/shapes = [  ]
 7/z_index = 0
 
-[sub_resource type="DynamicFont" id=14]
-size = 35
-font_data = ExtResource( 12 )
-
 [node name="Game" type="Node2D"]
 
 [node name="Background" type="TileMap" parent="."]
@@ -464,7 +457,7 @@ limit_bottom = 600
 [node name="EnemyContainer" type="Node2D" parent="."]
 
 [node name="Enemy Ground" parent="EnemyContainer" instance=ExtResource( 9 )]
-position = Vector2( 2681.46, 552.393 )
+position = Vector2( 2697.46, 506.393 )
 
 [node name="Bird" parent="EnemyContainer" instance=ExtResource( 8 )]
 
@@ -484,79 +477,36 @@ format = 1
 [node name="Camera" parent="." instance=ExtResource( 5 )]
 process_mode = 0
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Gems_Container" type="Node2D" parent="."]
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
-margin_right = 40.0
-margin_bottom = 40.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Lives" type="Label" parent="CanvasLayer/HUD"]
-margin_left = 110.0
-margin_top = 23.0
-margin_right = 205.0
-margin_bottom = 69.0
-mouse_filter = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 14 )
-text = "Lives:"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/HUD/Lives"]
-position = Vector2( -56.93, 11.23 )
-texture = ExtResource( 13 )
-
-[node name="Score" type="Label" parent="CanvasLayer/HUD"]
-margin_left = 512.0
-margin_top = 23.0
-margin_right = 529.0
-margin_bottom = 69.0
-mouse_filter = 0
-size_flags_vertical = 1
-custom_fonts/font = SubResource( 14 )
-text = "Lives:"
-__meta__ = {
-"_edit_use_anchors_": false,
-"_editor_description_": ""
-}
-
-[node name="Sprite" type="Sprite" parent="CanvasLayer/HUD/Score"]
-position = Vector2( -41.8811, 18.6462 )
-texture = ExtResource( 11 )
-
-[node name="Gems Container" type="Node2D" parent="."]
-
-[node name="Gem" parent="Gems Container" instance=ExtResource( 14 )]
+[node name="Gem" parent="Gems_Container" instance=ExtResource( 14 )]
 position = Vector2( 423.94, 286.726 )
 
-[node name="Gem2" parent="Gems Container" instance=ExtResource( 14 )]
+[node name="Gem2" parent="Gems_Container" instance=ExtResource( 14 )]
 position = Vector2( 1184.8, 289.396 )
 
-[node name="Gem3" parent="Gems Container" instance=ExtResource( 14 )]
+[node name="Gem3" parent="Gems_Container" instance=ExtResource( 14 )]
 position = Vector2( 915.161, 286.726 )
 
-[node name="Gem4" parent="Gems Container" instance=ExtResource( 14 )]
+[node name="Gem4" parent="Gems_Container" instance=ExtResource( 14 )]
 position = Vector2( 696.247, 297.405 )
 
-[node name="Key Container" type="Node2D" parent="."]
+[node name="Lives_Container" type="Node2D" parent="."]
 
-[node name="Keys" parent="Key Container" instance=ExtResource( 15 )]
+[node name="Keys" parent="Lives_Container" instance=ExtResource( 15 )]
 position = Vector2( 553.383, 161.063 )
 
-[node name="Keys2" parent="Key Container" instance=ExtResource( 15 )]
+[node name="Keys2" parent="Lives_Container" instance=ExtResource( 15 )]
 position = Vector2( 1034.4, 191.732 )
 
-[node name="Keys3" parent="Key Container" instance=ExtResource( 15 )]
+[node name="Keys3" parent="Lives_Container" instance=ExtResource( 15 )]
 position = Vector2( 797.706, 159.647 )
 
 [node name="Explosions" type="Node2D" parent="."]
 
 [node name="Attack_Container" type="Node2D" parent="."]
+
+[node name="UI" parent="." instance=ExtResource( 11 )]
 [connection signal="body_entered" from="Exit_to_3" to="Exit_to_3" method="_on_Exit_body_entered"]
+
+[editable path="UI"]
