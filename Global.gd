@@ -6,8 +6,7 @@ var fade_speed = 0.015
 var fade_in = false
 var fade_out = ""
 
-var death_zone = 1000
-
+var death_zone = 2000
 var level = 1
 var keys = 3
 var score = 0
@@ -186,9 +185,13 @@ func execute_fade_out(target):
 
 func increase_score(s):
 	score += s
+	HUD = get_node("/root/Game/UI/HUD")
 	HUD.update_score(s)
 	
 	
 func increase_keys(k):
-	
+	#keys += k
+	HUD = get_node("/root/Game/UI/HUD")
 	HUD.update_lives(k)
+	
+

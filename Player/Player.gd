@@ -27,7 +27,7 @@ var container_position = Vector2.ZERO
 
 
 onready var Attack = load("res://Attack/Attack.tscn")
-
+onready var HUD = get_node("/root/Game/UI/HUD")
 
 func _ready():
 	pass
@@ -40,7 +40,7 @@ func _physics_process(_delta):
 	if direction > 0 and $AnimatedSprite.flip_h: $AnimatedSprite.flip_h = false
 	
 	if position.y > Global.death_zone:
-		queue_free()
+		die()
 	
 	if Input.is_action_just_pressed("attack"):
 		var attack = Attack.instance()
@@ -72,9 +72,9 @@ func set_animation(anim):
 	else: $AnimatedSprite.play()
 
 func die():
-	Global.keys -= 1
+	HUD.update_lives(-1)
+	print(Global.keys)
 	Global.score = 0
-	
 	queue_free()
 
 func do_damage(d):

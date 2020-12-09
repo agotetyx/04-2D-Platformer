@@ -13,7 +13,11 @@ export var min_constraint = -100
 
 onready var Explosion = load("res://Explosions/Explosion.tscn")
 	
-func _physics_process(_delta):
+func _physics_process(delta):
+	#print(position.x)
+	velocity.x += (direction * speed)
+	position.x += velocity.x * delta
+	move_and_slide(velocity, Vector2.UP)
 	if direction < 0 and !$AlienSprite.flip_h:
 		$AlienSprite.flip_h = true
 	if direction > 0 and $AlienSprite.flip_h:
@@ -25,10 +29,10 @@ func _physics_process(_delta):
 		velocity.x = 0
 		direction  = 1
 	
-	velocity.x += direction * speed
-	move_and_slide_with_snap(velocity, Vector2.UP)
-	for i in get_slide_count():
-		var collision = get_slide_collision(i)
+	
+	
+	#for i in get_slide_count():
+		#var collision = get_slide_collision(i)
 	#	print(collision.collider.name)
 		
 	
@@ -45,9 +49,10 @@ func _physics_process(_delta):
 
 
 func _on_Area2D_body_entered(body):
-	if body.name == "Platform" or body.name == "Ground":
-			velocity.x = 0
-			direction *= -1
+#	if velocity.x != 0 and (body.name == "Platform"):
+#		print("platform")
+#		velocity.x = 0
+#		direction *= -1
 	if body.name == "Player":
 			body.die()
 			

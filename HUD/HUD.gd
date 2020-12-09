@@ -18,8 +18,10 @@ func update_score(s):
 		#get_tree().change_scene("res://Menu/Win.tscn")
 
 func update_lives(s):
-	Global.keys += s
+	Global.keys+= s
 	$Lives.text = "Lives: " + str(Global.keys)
 	if Global.keys <= 0:
-		queue_free()
+		get_tree().change_scene("res://Levels/Game_over_die.tscn")
+		
+
 

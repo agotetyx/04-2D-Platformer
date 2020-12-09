@@ -56,9 +56,8 @@ animations = [ {
 [node name="Enemy Ground" type="KinematicBody2D" groups=[
 "Enemy_Ground",
 ]]
-position = Vector2( 1906.47, 244.089 )
-collision_layer = 4
-collision_mask = 4
+collision_layer = 6
+collision_mask = 6
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
@@ -66,24 +65,20 @@ __meta__ = {
 
 [node name="AlienSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 9 )
-frame = 8
+frame = 4
 playing = true
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -1.39697, 57.973 )
-scale = Vector2( 3.57616, 3.5 )
+position = Vector2( -2.41135, 47.63 )
+scale = Vector2( 3.4481, 3.32334 )
 shape = SubResource( 10 )
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-enabled = true
-
 [node name="Area2D" type="Area2D" parent="."]
-collision_layer = 2147483652
+position = Vector2( -14, 1 )
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
-position = Vector2( -2.28796, 51.7367 )
-scale = Vector2( 5.04569, 3.5 )
+position = Vector2( 11.5886, 46.63 )
+scale = Vector2( 3.4481, 3.32334 )
 shape = SubResource( 10 )
 [connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

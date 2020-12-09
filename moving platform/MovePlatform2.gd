@@ -16,10 +16,13 @@
 	#pass
 
 
+
+
 extends KinematicBody2D
 
-export var vec1 = Vector2(1170, 384)
-export var vec2 = Vector2(1170, -30)
+
+export var vec1 = Vector2(964, 813)
+export var vec2 = Vector2(1006, 340)
 
 var locations = [ position, vec1, vec2]
 var pos = 0

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://moving platform/MovePlatform.gd" type="Script" id=1]
+[ext_resource path="res://moving platform/MovePlatform2.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Tiles moving.png" type="Texture" id=2]
 
 [node name="MovePlatform" type="KinematicBody2D"]
@@ -13,7 +13,8 @@ __meta__ = {
 }
 
 [node name="Tiles moving" type="Sprite" parent="."]
-position = Vector2( 3.48059, -2.68344 )
+position = Vector2( 3.48059, 0.161122 )
+scale = Vector2( 1, 0.89735 )
 texture = ExtResource( 2 )
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="."]
